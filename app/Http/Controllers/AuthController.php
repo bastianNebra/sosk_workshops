@@ -36,14 +36,29 @@ class AuthController extends Controller
          *@var User $user
          */
         $user = Auth::user();
-        $token = $user->createToken('token')->plainTextToken; 
+        $jwt = $user->createToken('token')->plainTextToken; 
+
+        $cookie = cookie('jwt', $jwt,24*60*60);
 
         return response()->json([
-            'jwt'=>$token,
-        ]);
+            'jwt'=>$jwt,
+        ])->withCookie($cookie);
     }
 
     public function user(Request $request){
         return $request->user();
+    }
+
+    public function logout(Request $request){
+
+        $cookie = \Cookie::forget('jwt');
+        return \response([
+            'message' => 'Logged out successfully'
+        ])->withoutCookie($cookie);
+    }
+
+
+    public function updateInfo(Request $request){
+
     }
 }
