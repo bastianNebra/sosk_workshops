@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Permission;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class PermissionController extends Controller
 {
@@ -31,7 +32,7 @@ class PermissionController extends Controller
         $permission = Permission::find($id);
         $permission->delete();
 
-        return response()->json(NULL, Request::HTTP_NO_CONTENT);
+        return response()->json(NULL, Response::HTTP_NO_CONTENT);
     }
 
 

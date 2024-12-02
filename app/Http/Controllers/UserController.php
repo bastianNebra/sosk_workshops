@@ -6,7 +6,7 @@ use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\Response;
+use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
@@ -42,6 +42,6 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user->delete();
-        return response()->json(NULL, Request::HTTP_NO_CONTENT);
+        return response()->json(NULL, Response::HTTP_NO_CONTENT);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class RoleController extends Controller
 {
@@ -30,7 +31,7 @@ class RoleController extends Controller
         $role = Role::find($id);
         $role->delete();
 
-        return response()->json(NULL, Request::HTTP_NO_CONTENT);
+        return response()->json(NULL, Response::HTTP_NO_CONTENT);
     }
 
 }
