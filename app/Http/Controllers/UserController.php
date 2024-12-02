@@ -16,17 +16,17 @@ class UserController extends Controller
         return User::paginate();
     }
 
+    public function show($id)
+    {
+        return User::find($id);
+    }
+
 
     public function store(UserCreateRequest $request)
     {
         $users = User::create($request->only('first_name', 'last_name', 'email')
         + ['password'=>\Hash::make(123)]);
         return response()->json($users,Response::HTTP_CREATED);    
-    }
-
-    public function show($id)
-    {
-        return User::find($id);
     }
 
 
@@ -42,6 +42,6 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user->delete();
-        return response()->json(NULL, HTTP_NO_CONTENT);
+        return response()->json(NULL, Request::HTTP_NO_CONTENT);
     }
 }
