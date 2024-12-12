@@ -13,12 +13,12 @@ class UserController extends Controller
 
     public function index()
     {
-        return User::paginate();
+        return User::with('role')->paginate();
     }
 
     public function show($id)
     {
-        return User::find($id);
+        return User::with('role')->find($id);
     }
 
 
