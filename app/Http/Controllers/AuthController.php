@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\UpdateInfoRequest;
 use App\Http\Requests\UpdatePasswordRequest;
+use App\Http\Resources\UserResource;
 use Hash;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,10 +23,11 @@ class AuthController extends Controller
             'last_name' => $request->input('last_name'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
+            'role_id' =>1,
 
         ]);
         Log::info("Create user with success", array("user"=>$user));
-        return response($user, Response::HTTP_CREATED);
+        return response(new UserResource($user), Response::HTTP_CREATED);
     }
 
     public function login(Request $request){
@@ -48,7 +50,8 @@ class AuthController extends Controller
     }
 
     public function user(Request $request){
-        return $request->user();
+        $user = $request->user();
+        return new UserResource($user->load('role')) ;
     }
 
     public function logout(Request $request){
@@ -72,7 +75,7 @@ class AuthController extends Controller
         $user->update([
             'password' => Hash::make($request->input('password'))
         ]);
-        return response()->json($user, Response::HTTP_ACCEPTED);
+        return response()->json(new UserResource($user), Response::HTTP_ACCEPTED);
 
     }
 }
