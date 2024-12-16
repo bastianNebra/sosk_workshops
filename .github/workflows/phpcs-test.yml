@@ -43,7 +43,7 @@ jobs:
           echo "Directory app/ does not exist. Analyzing all files instead."
           ~/.composer/vendor/bin/phpcs --standard=PSR12 .
         fi
-           
+
     - name: Fix PHP Code Style
-      run: ~/.composer/vendor/bin/phpcbf --standard=PSR12 app/
+      run: ~/.composer/vendor/bin/phpcbf --standard=PSR12 --report=checkstyle --report-file=phpcs-report.xml app/
       
