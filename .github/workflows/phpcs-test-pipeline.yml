@@ -10,7 +10,7 @@ jobs:
     name: Run Laravel Static code check
     runs-on: ubuntu-latest
     steps:
-    - uses: ./.github/workflows/php-cs-test.yml
+    - uses: ./.github/workflows/laravel-test-pipeline.yml
       with:
           code_directory: "app/"
 
