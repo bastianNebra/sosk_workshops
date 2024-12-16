@@ -4,37 +4,36 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
-use Illuminate\Http\Request;
 use App\Models\User;
 use Symfony\Component\HttpFoundation\Response;
+use App\Http\Resources\UserResource;
 
 class UserController extends Controller
 {
 
     public function index()
     {
-        return User::with('role')->paginate();
+        return UserResource::collection(User::paginate());
     }
-
-    public function show($id)
+      public function show($id)
     {
-        return User::with('role')->find($id);
+        return new UserResource(User::with('role')->find($id));
     }
 
 
     public function store(UserCreateRequest $request)
     {
-        $users = User::create($request->only('first_name', 'last_name', 'email')
+        $users = User::create($request->only('first_name', 'last_name', 'email','role_id')
         + ['password'=>\Hash::make(123)]);
-        return response()->json($users,Response::HTTP_CREATED);    
+        return response()->json(new UserResource($users),Response::HTTP_CREATED);    
     }
 
 
     public function update(UserUpdateRequest $request, $id)
     {
         $user = User::find($id);
-        $user->update($request->only('first_name', 'last_name', 'email'));
-        return response()->json($user, Response::HTTP_ACCEPTED);
+        $user->update($request->only('first_name', 'last_name', 'email','role_id'));
+        return response()->json(new UserResource($user), Response::HTTP_ACCEPTED);
     }
 
 
