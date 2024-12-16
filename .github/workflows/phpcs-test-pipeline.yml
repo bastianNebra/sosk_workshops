@@ -1,0 +1,32 @@
+name: Php cs test
+
+on:
+  push:
+    branches: [ "feature/dev","feature/dev-1" ]
+
+
+jobs:
+  static-tests:
+    name: Run Laravel Static code check
+    runs-on: ubuntu-latest
+    steps:
+    - uses: ./.github/workflows/php-cs-test.yml
+      with:
+          code_directory: "app/"
+
+    # Installer PHP CodeSniffer (PHPCS)
+    - name: Install PHP CodeSniffer
+      run: composer global require "squizlabs/php_codesniffer=*"
+
+    # Vérifier le style de code
+    - name: Run PHP Code Style Test
+      run: |
+        ~/.composer/vendor/bin/phpcs --standard=PSR12 app/
+
+
+
+
+
+
+
+
