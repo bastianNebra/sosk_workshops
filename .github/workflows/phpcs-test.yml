@@ -46,4 +46,11 @@ jobs:
 
     - name: Fix PHP Code Style
       run: ~/.composer/vendor/bin/phpcbf --standard=PSR12 --report=checkstyle --report-file=phpcs-report.xml app/
-      
+  
+    # Télécharger le fichier XML généré comme artefact
+    - name: Upload PHPCS Report as Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: phpcs-report
+        path: phpcs-report.xml
+        
