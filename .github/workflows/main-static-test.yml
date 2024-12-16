@@ -7,8 +7,9 @@ on:
 
 jobs:
   static-tests:
+    
     name: Php cs test
-    uses: ./.github/workflows/laravel-admin-pipeline.yml
+    uses: ./.github/workflows/phpcs-test.yml
     with:
         code_directory: "app/"
 

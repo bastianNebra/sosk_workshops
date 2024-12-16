@@ -32,13 +32,8 @@ jobs:
     - name: Directory Permissions
       run: chmod -R 777 storage bootstrap/cache
 
-    - name: Create Database
-      run: |
-        mkdir -p database
-        touch database/database.sqlite
-        
-    - name: Execute tests (Unit and Feature tests) via PHPUnit/Pest
-      env:
-        DB_CONNECTION: sqlite
-        DB_DATABASE: database/database.sqlite
-      run: php artisan test
+    - name: Install PHP CodeSniffer
+      run: composer global require squizlabs/php_codesniffer
+      
+    - name: Run Code Check
+      run: ~/.composer/vendor/bin/phpcs --standard=PSR12 ${{ inputs.code_directory }}
