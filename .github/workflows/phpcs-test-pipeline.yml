@@ -7,21 +7,11 @@ on:
 
 jobs:
   static-tests:
-    name: Run Laravel Static code check
-    runs-on: ubuntu-latest
-    steps:
-    - uses: ./.github/workflows/laravel-admin-pipeline.yml
-      with:
-          code_directory: "app/"
+    name: Php cs test
+    uses: ./.github/workflows/laravel-admin-pipeline.yml
+    with:
+        code_directory: "app/"
 
-    # Installer PHP CodeSniffer (PHPCS)
-    - name: Install PHP CodeSniffer
-      run: composer global require "squizlabs/php_codesniffer=*"
-
-    # Vérifier le style de code
-    - name: Run PHP Code Style Test
-      run: |
-        ~/.composer/vendor/bin/phpcs --standard=PSR12 app/
 
 
 
