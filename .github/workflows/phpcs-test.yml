@@ -38,10 +38,11 @@ jobs:
     - name: Run PHP Code Style Test
       run: |
         if [ -d "app/" ]; then
-          ~/.composer/vendor/bin/phpcs --standard=PSR12 app/
+          vendor/bin/phpcs --standard=PSR12 --report=checkstyle --report-file=$(pwd)/phpcs-report.xml app/
         else
           echo "Directory app/ does not exist. Analyzing all files instead."
-          ~/.composer/vendor/bin/phpcs --standard=PSR12 .
+          vendor/bin/phpcs --standard=PSR12 --report=checkstyle --report-file=$(pwd)/phpcs-report.xml .
+
         fi
 
     - name: Fix PHP Code Style
