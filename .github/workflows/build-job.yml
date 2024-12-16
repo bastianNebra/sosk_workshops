@@ -3,7 +3,8 @@ name: Build and Push Laravel to Docker Hub
 on:
   push:
     branches:
-      - main  # Déclencher sur push vers la branche principale
+      - develop
+      - feature/dev
 
 jobs:
   build-and-push:
