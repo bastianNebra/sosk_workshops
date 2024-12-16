@@ -8,18 +8,19 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Role;
 
-
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
 
     protected $guarded = [];
     protected $hidden = ['password'];
 
 
 
-    public function role(){
+    public function role()
+    {
         return $this->belongsTo(Role::class);
     }
-
 }
