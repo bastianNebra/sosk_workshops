@@ -54,6 +54,8 @@ class Order extends Model
 
     public function getTotalAttribute()
     {
-        return $this->orderItems->sum(fn(OrderItem $orderItem)=> $orderItem->quatity * $orderItem->price);
+        return $this->orderItems->sum(function (OrderItem $orderItem) {
+            $orderItem->quatity * $orderItem->price;
+        });
     }
 }
