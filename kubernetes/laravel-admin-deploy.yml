@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laravel-admin
+  labels:
+    app: laravel-admin
+spec:
+  replicas: 3  
+  selector:
+    matchLabels:
+      app: laravel-admin
+  template:
+    metadata:
+      labels:
+        app: laravel-admin
+    spec:
+      containers:
+      - name: laravel-container
+        image: bastiannebra/laravel-admin:v1.0.0
+        ports:
+        - containerPort: 80
+        env:
+        - name: APP_ENV
+          value: production
+        - name: APP_KEY
+          valueFrom:
+            secretKeyRef:
+              name: laravel-secret
+              key: app_key
+        - name: DB_CONNECTION
+          value: mysql
+        - name: DB_HOST
+          value: laravel-mysql  # Replace with your DB service name
+        - name: DB_PORT
+          value: "3306"
+        - name: DB_DATABASE
+          value: laravel
+        - name: DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: laravel-secret
+              key: db_username
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: laravel-secret
+              key: db_password
+        volumeMounts:
+        - name: laravel-storage
+          mountPath: /var/www/html/storage
+      volumes:
+      - name: laravel-storage
+        persistentVolumeClaim:
+          claimName: laravel-pvc

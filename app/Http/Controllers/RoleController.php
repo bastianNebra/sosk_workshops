@@ -27,7 +27,7 @@ class RoleController extends Controller
 
     public function update(Request $request, $id)
     {
-        $role = Role::get($id);
+        $role = Role::find($id);
         $role->update($request->only('name'));
         return response()->json(new RoleResource($role), Response::HTTP_ACCEPTED);
     }
