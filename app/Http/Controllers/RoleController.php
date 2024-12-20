@@ -22,6 +22,7 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $role = Role::create($request->only('permission'));
+
         return response()->json(new RoleResource($role), Response::HTTP_CREATED);
     }
 
@@ -29,6 +30,7 @@ class RoleController extends Controller
     {
         $role = Role::find($id);
         $role->update($request->only('name'));
+
         return response()->json(new RoleResource($role), Response::HTTP_ACCEPTED);
     }
 

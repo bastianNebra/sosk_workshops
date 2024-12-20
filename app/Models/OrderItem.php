@@ -4,12 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
-use App\Models\Order;
+use Laravel\Sanctum\HasApiTokens;
 
 /**
- * App\Models\OderItem
+ * App\Models\OderItem.
  *
  * @method static \Illuminate\Database\Eloquent\Builder|OderItem newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|OderItem newQuery()
@@ -41,7 +40,6 @@ class OrderItem extends Model
     use HasApiTokens;
     use HasFactory;
     use Notifiable;
-
 
     public function order()
     {

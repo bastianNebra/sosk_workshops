@@ -27,7 +27,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('user/password', [AuthController::class, 'updatePassword']);
 
     Route::apiResource('users', UserController::class);
-    Route::apiResource('roles',RoleController::class);
-    Route::apiResource('permissions',PermissionController::class);
+    Route::apiResource('roles', RoleController::class);
+    Route::apiResource('permissions', PermissionController::class);
 
 });

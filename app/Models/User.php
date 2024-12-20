@@ -6,10 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\Role;
 
 /**
- * App\Models\User
+ * App\Models\User.
  *
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
@@ -45,9 +44,8 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $guarded = [];
+
     protected $hidden = ['password'];
-
-
 
     public function role()
     {

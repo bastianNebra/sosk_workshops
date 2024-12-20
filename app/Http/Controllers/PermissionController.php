@@ -22,6 +22,7 @@ class PermissionController extends Controller
     public function store(Request $request)
     {
         $permission = Permission::create($request->only('permission'));
+
         return response()->json(new PermissionResource($permission), Response::HTTP_CREATED);
     }
 
@@ -29,6 +30,7 @@ class PermissionController extends Controller
     {
         $permission = Permission::get($id);
         $permission->update($request->only('name'));
+
         return response()->json(new PermissionResource($permission), Response::HTTP_ACCEPTED);
     }
 

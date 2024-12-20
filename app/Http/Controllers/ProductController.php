@@ -22,6 +22,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $Product = Product::create($request->only('title', 'description', 'image', 'price'));
+
         return response()->json(new ProductResource($Product), Response::HTTP_CREATED);
     }
 
@@ -29,6 +30,7 @@ class ProductController extends Controller
     {
         $Product = Product::find($id);
         $Product->update($request->only('title', 'description', 'image', 'price'));
+
         return response()->json(new ProductResource($Product), Response::HTTP_ACCEPTED);
     }
 
