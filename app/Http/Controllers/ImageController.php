@@ -7,7 +7,6 @@ use Illuminate\Support\Str;
 
 class ImageController extends Controller
 {
-    //
 
     public function upload(Request $request)
     {

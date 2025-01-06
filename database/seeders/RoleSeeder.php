@@ -39,7 +39,7 @@ class RoleSeeder extends Seeder
         $admin->permissions()->attach($permissions->pluck('id'));
         $editor->permissions()->attach($permissions->pluck('id'));
         $editor->permissions()->detach(4);
-        $viewer->permissions()->attach(1, 3, 5, 7);
+        $viewer->permissions()->attach([1, 3, 5, 7]);
 
 
 

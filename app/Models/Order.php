@@ -40,6 +40,8 @@ class Order extends Model
     use HasFactory;
     use Notifiable;
 
+    protected $guarded = [];
+
     public function orderItems()
     {
         return  $this->hasMany(OrderItem::class);

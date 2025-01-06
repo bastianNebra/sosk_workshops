@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 /**
  * App\Models\Product.
@@ -30,7 +32,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Product extends Model
 {
+    use HasApiTokens;
     use HasFactory;
+    use Notifiable;
 
-    protected $fillable = ['title', 'description', 'image', 'price'];
+    protected $guarded = [];
 }
