@@ -32,3 +32,6 @@ jobs:
     - name: Push Docker Image to Docker Hub
       run: |
         docker push ${{ secrets.DOCKER_USERNAME }}/laravel-admin:v1.0.0
+
+    # Deployer vers Microsoft Azure
+    
