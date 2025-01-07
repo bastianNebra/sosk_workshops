@@ -73,7 +73,7 @@ jobs:
       - name: Test SSH connection
         run: |
           # Testez la connexion SSH
-          ssh -i private_key -o StrictHostKeyChecking=no $VM_USER@$VM_IP 'echo "SSH connection successful"'
+          ssh -v -i private_key -o StrictHostKeyChecking=no $VM_USER@$VM_IP 'echo "SSH connection successful"'
 
 
 
