@@ -26,7 +26,7 @@ class UpdateInfoRequest extends FormRequest
         return [
             'first_name' => 'required',
             'last_name' => 'required',
-            'email' => 'email'
+            'email' => 'email',
         ];
     }
 }

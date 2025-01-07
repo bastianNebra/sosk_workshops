@@ -27,7 +27,7 @@ class UpdatePasswordRequest extends FormRequest
             //
 
             'password' => 'required',
-            'password_confirm' => 'required|same:password'
+            'password_confirm' => 'required|same:password',
         ];
     }
 }

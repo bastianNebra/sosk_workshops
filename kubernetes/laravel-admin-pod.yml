@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: laravel-admin
+  labels:
+      app: laravel-admin-anwendung
+spec:
+  containers:
+      
+    - name: laravel-admin
+      image: bastiannebra/laravel-admin:v1.0.0
+      ports:
+        - containerPort: 8000
+          name: http
+          protocol: TCP
+
+

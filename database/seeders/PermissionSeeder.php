@@ -1,6 +1,7 @@
 <?php
 
 namespace Database\Seeders;
+
 use App\Models\Permission;
 use Illuminate\Database\Seeder;
 
@@ -15,7 +16,7 @@ class PermissionSeeder extends Seeder
     {
         Permission::insert([
             ['name' => 'view_users'],
-            ['name' => 'edit_users'], 
+            ['name' => 'edit_users'],
 
             ['name' => 'view_roles'],
             ['name' => 'edit_roles'],

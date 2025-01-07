@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: laravel-mysql
+  labels:
+      app: laravel-mysql-anwendung
+spec:
+  containers:
+    - name: laravel-mysql
+      image: mysql:latest
+      env:
+        - name: MYSQL_DATABASE
+          value: admin
+        - name: MYSQL_USERNAME
+          value: root
+        - name: MYSQL_PASSWORD
+          value: root
+        - name: MYSQL_ROOT_PASSWORD
+          value: root
+
+      volumeMounts:
+        - name: mysql-data
+          mountPath: /var/lib/mysql     
+      ports:
+        - containerPort: 3306
+          name: http
+          protocol: TCP
+  volumes: 
+      - name: mysql-data
+        emptyDir: {}
+

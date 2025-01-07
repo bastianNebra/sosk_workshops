@@ -1,12 +1,12 @@
 
 services:
 
-  frontend:
-    image: antoniopapa1991/admin-frontend
-    ports:
-      - 8080:80
-    depends_on:
-      - backend
+#   frontend:
+#     image: antoniopapa1991/admin-frontend
+#     ports:
+#       - 8080:80
+#     depends_on:
+#       - backend
 
   backend:
     build:
@@ -15,7 +15,7 @@ services:
     ports:
       - 8000:8000
     volumes:
-      - .:/app 
+      - .:/app
     depends_on:
       - db
 
@@ -31,7 +31,7 @@ services:
       - ./storage/dbdata:/var/lib/mysql
     ports:
       - 33066:3306
-  
+
   dbdata_admin:
     image: adminer
     restart: always
