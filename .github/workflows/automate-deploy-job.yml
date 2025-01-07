@@ -77,14 +77,15 @@ jobs:
           VM_USER: ${{ secrets.VM_USER }}
           VM_IP: ${{ secrets.VM_IP }}
         run: |
+          # Tester la connexion SSH avec une commande simple
+          ssh -T -i private_key -o StrictHostKeyChecking=no $VM_USER@$VM_IP 'echo "SSH connection successful"'
+
+          # Si la connexion fonctionne, procéder au déploiement
           ssh -T -i private_key -o StrictHostKeyChecking=no $VM_USER@$VM_IP << EOF
             mkdir -p sosk_workshop
             cd sosk_workshop
-
             docker pull ${{ secrets.DOCKER_USERNAME }}/laravel-admin:v1.0.0
-
             docker build -t laravel-admin:v1.0.0 .
-
             docker run -d -p 8000:8000 laravel-admin:v1.0.0
           EOF
 
