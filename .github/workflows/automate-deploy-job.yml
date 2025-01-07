@@ -65,6 +65,11 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+      - name: Set up SSH key
+        run: |
+            echo "$SSH_PRIVATE_KEY" > private_key
+            chmod 600 private_key
+
       # Se connecter a la VM via SSH et executer les commandes
       - name: Deploy Laravel app via Docker on Azure VM
         env:
