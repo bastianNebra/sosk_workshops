@@ -71,14 +71,15 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           VM_USER: ${{ secrets.VM_USER }}
           VM_IP: ${{ secrets.VM_IP }}
-        run: | # ssh -i ~/.ssh/sosk_key.pem azureuser@20.199.18.244
-          echo "$SSH_PRIVATE_KEY" > private_key
-          chmod 600 private_key
-          ssh  -T -i private_key -o StrictHostKeyChecking=no $VM_USER@VM_IP << 'EOF'
+        run: |
+          ssh -T -i private_key -o StrictHostKeyChecking=no $VM_USER@$VM_IP << EOF
             mkdir -p sosk_workshop
-            cd /sosk_workshop
+            cd sosk_workshop
+
             docker pull ${{ secrets.DOCKER_USERNAME }}/laravel-admin:v1.0.0
+
             docker build -t laravel-admin:v1.0.0 .
+
             docker run -d -p 8000:8000 laravel-admin:v1.0.0
           EOF
 
