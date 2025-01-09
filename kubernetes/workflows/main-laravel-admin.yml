@@ -11,7 +11,11 @@ on:
 
 jobs:
   call-reusable-workflow:
+<<<<<<< HEAD:.github/workflows/main-laravel-admin.yml
     uses: bastianNebra/sosk_workshops/.github/workflows/phpcs-fixer-job.yml@main
+=======
+    uses:  bastianNebra/sosk_workshops/.github/workflows/phpcs-fixer-job.yml@main
+>>>>>>> 828fb0120e23a24ec39be3904e83250476d5a8eb:kubernetes/workflows/main-laravel-admin.yml
 
 
 
