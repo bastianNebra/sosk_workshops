@@ -11,7 +11,7 @@ on:
 
 jobs:
   call-reusable-workflow:
-    uses: bastianNebra/sosk_workshops/.github/workflows/phpcs-fixer-job@main
+    uses: bastianNebra/sosk_workshops/.github/workflows/phpcs-fixer-job.yml@main
 
 
 
