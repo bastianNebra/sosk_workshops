@@ -11,6 +11,7 @@ name: "Deploy on vm workflows"
 env:
   DIR_NAME: sosk_workshop
   SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+  APP_NAME: "laravel-admin"
 
 on:
   push:
@@ -48,7 +49,7 @@ jobs:
           chmod 600 private_key
 
       # Deploy the Laravel app via Docker on Azure VM
-      - name: Deploy Laravel app via Docker on Azure VM
+      - name: "Deploy Laravel app via Docker on Azure VM"
         env:
           VM_USER: ${{ secrets.VM_USER }}
           VM_IP: ${{ secrets.VM_IP }}
@@ -58,9 +59,9 @@ jobs:
           ssh -T -i private_key -o StrictHostKeyChecking=no $VM_USER@$VM_IP << EOF
             mkdir -p /home/$VM_USER/$DIR_NAME
             cd /home/$VM_USER/$DIR_NAME
-            docker pull ${{ secrets.DOCKER_USERNAME }}/laravel-admin:v1.0.0
-            docker build -t laravel-admin:v1.0.0 .
-            docker run -d -p 8000:8000 laravel-admin:v1.0.0
+            docker pull ${{ secrets.DOCKER_USERNAME }}/ $APP_NAME:v1.0.0
+            docker build -t $APP_NAME:v1.0.0 .
+            docker run -d -p 8000:8000  $APP_NAME:v1.0.0
           EOF
 
 
