@@ -1,7 +1,16 @@
 # # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # # More GitHub Actions for Azure: https://github.com/Azure/actions
 
+# echo "password" | docker login -u username --password-stdin
+# ssh -i ~/.ssh/sosk_key.pem azureuser@ip_adresse
+
 # name: Deploy PHP app (Laravel) to Azure VM - laravel-admin
+
+name: "Deploy on vm workflows"
+
+env:
+  DIR_NAME: sosk_workshop
+  SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
 on:
   push:
@@ -41,15 +50,14 @@ jobs:
       # Deploy the Laravel app via Docker on Azure VM
       - name: Deploy Laravel app via Docker on Azure VM
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           VM_USER: ${{ secrets.VM_USER }}
           VM_IP: ${{ secrets.VM_IP }}
         run: |
           ssh -T -i private_key -o StrictHostKeyChecking=no $VM_USER@$VM_IP 'echo "SSH connection successful"'
 
           ssh -T -i private_key -o StrictHostKeyChecking=no $VM_USER@$VM_IP << EOF
-            mkdir -p /home/$VM_USER/sosk_workshop
-            cd /home/$VM_USER/sosk_workshop
+            mkdir -p /home/$VM_USER/$DIR_NAME
+            cd /home/$VM_USER/$DIR_NAME
             docker pull ${{ secrets.DOCKER_USERNAME }}/laravel-admin:v1.0.0
             docker build -t laravel-admin:v1.0.0 .
             docker run -d -p 8000:8000 laravel-admin:v1.0.0
@@ -111,8 +119,7 @@ jobs:
 
 
 
-# echo "123456789" | docker login -u bastiannebra --password-stdin
-# ssh -i ~/.ssh/sosk_key.pem azureuser@20.199.18.244
+
 
 
 

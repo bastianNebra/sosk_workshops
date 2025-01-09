@@ -1,4 +1,4 @@
-name: Laravel test Workflows with dynamic imput
+name: "Laravel CodeSnifer test Workflows with dynamic imput"
 
 
 on:

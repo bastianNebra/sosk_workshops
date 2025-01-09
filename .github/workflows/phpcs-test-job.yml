@@ -1,4 +1,4 @@
-name: Laravel
+name: "Laravel Code Style Test workflow"
 
 on:
   workflow_dispatch:
