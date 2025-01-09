@@ -6,7 +6,7 @@ name: "Main Artefact for all worflow_call"
 on:
   push:
     branches:
-      - develop
+			- develop
   workflow_dispatch:
 
 jobs:
