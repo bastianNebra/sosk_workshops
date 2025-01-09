@@ -1,10 +1,14 @@
 name: Build and Push Laravel to Docker Hub
 
+
+
+env:
+  TAG_NAME: laravel-admin:v1.1.0
+
 on:
   push:
     branches:
       - develop
-      - feature/dev
 
 jobs:
   build-and-push:
@@ -26,12 +30,11 @@ jobs:
     # Construire l'image Docker
     - name: Build Docker Image
       run: |
-        docker build -t ${{ secrets.DOCKER_USERNAME }}/laravel-admin:v1.0.0 .
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/$TAG_NAME .
 
     # Pousser l'image sur Docker Hub
     - name: Push Docker Image to Docker Hub
       run: |
-        docker push ${{ secrets.DOCKER_USERNAME }}/laravel-admin:v1.0.0
+        docker push ${{ secrets.DOCKER_USERNAME }}/$TAG_NAME
 
-    # Deployer vers Microsoft Azure
-    
+

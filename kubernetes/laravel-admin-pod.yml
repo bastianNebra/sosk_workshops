@@ -1,12 +1,11 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: laravel-admin
+  name: laravel-admin-pod
   labels:
-      app: laravel-admin-anwendung
+    app: laravel-admin
 spec:
   containers:
-      
     - name: laravel-admin
       image: bastiannebra/laravel-admin:v1.0.0
       ports:

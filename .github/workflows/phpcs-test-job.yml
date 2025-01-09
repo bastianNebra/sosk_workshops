@@ -1,29 +1,46 @@
 name: Laravel
 
 on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Specify as Job nome"
+        required: false
+        type: string
+        default: "Run a Laravel Tests"
   workflow_call:
     inputs:
+      name:
+        description: "Specify as Job nome"
+        required: false
+        type: string
+        default: "Run a Laravel Tests"
       code_directory:
         description: "Directory to check"
         required: false
         type: string
+      php_version:
+        description: "PHP version for the App"
+        required: false
+        type: string
+        default: '8.1'
 
 jobs:
   laravel-tests:
-    name: Run Laravel Tests
+    name: ${{ inputs.name }}
     runs-on: ubuntu-latest
     steps:
     - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
       with:
-        php-version: '8.0'
+        php-version:  ${{ inputs.php_version }}
     - uses: actions/checkout@v4
-    
+
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
     - name: Install Dependencies
       run: |
-        composer update 
+        composer update
         composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
     - name: Generate key
@@ -40,22 +57,14 @@ jobs:
 
     - name: Fix PHP Code Style
       run: ~/.composer/vendor/bin/phpcbf --standard=PSR12 --report=checkstyle --report-file=phpcs-report.xml app/
-  
-    # Télécharger le fichier XML généré comme artefact
+
     - name: Upload PHPCS Report as Artifact
       uses: actions/upload-artifact@v3
       with:
         name: phpcs-report
         path: phpcs-report.xml
 
-  build-projekt:
-    name: Build and push on Docker Hub
-    runs-on: ubuntu-latest
-    steps:
-    - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
-      with:
-        php-version: '8.0'
-    - uses: actions/checkout@v4
 
 
-        
+
+

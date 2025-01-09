@@ -1,29 +1,41 @@
-name: Laravel
+name: Laravel test Workflows with dynamic imput
+
 
 on:
   workflow_call:
     inputs:
-      code_directory:
-        description: "Directory to check"
+      name:
+        description: "Job name"
         required: false
         type: string
+        default: "Run laravel test"
+      env-run:
+        description: "OS System"
+        required: false
+        type: string
+        default: ubuntu-latest
+      file-name:
+        description: "Name for file resultat"
+        required: false
+        type: string
+        default: phpcs-report
 
 jobs:
   laravel-tests:
-    name: Run Laravel Tests
-    runs-on: ubuntu-latest
+    name: ${{ inputs.name }}
+    runs-on: ${{ inputs.env-run }}
     steps:
     - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
       with:
         php-version: '8.0'
     - uses: actions/checkout@v4
-    
+
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
     - name: Install Dependencies
       run: |
-        composer update 
+        composer update
         composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
     - name: Generate key
@@ -36,15 +48,14 @@ jobs:
       run: composer global require squizlabs/php_codesniffer
 
     - name: Run PHP Cs Fixer Test
-      run: ~/.composer/vendor/bin/phpcs --standard=PSR12 --report=checkstyle --report-file=$(pwd)/phpcs-report.xml .
-  
-    # Télécharger le fichier XML généré comme artefact
+      run: ~/.composer/vendor/bin/phpcs --standard=PSR12 --report=checkstyle --report-file=$(pwd)/${{ inputs.file-name }}.xml .
+
     - name: Upload PHPCS Report as Artifact
       uses: actions/upload-artifact@v3
       with:
-        name: phpcs-report
-        path: phpcs-report.xml
+        name: ${{ inputs.file-name }}
+        path: ${{ inputs.file-name }}.xml
 
 
 
-        
+
