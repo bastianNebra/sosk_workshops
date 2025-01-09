@@ -1,7 +1,5 @@
 name: Build and Push Laravel to Docker Hub
 
-
-
 env:
   TAG_NAME: laravel-admin:v1.1.0
 

@@ -6,7 +6,7 @@
 
 # name: Deploy PHP app (Laravel) to Azure VM - laravel-admin
 
-name: "Deploy on vm workflows"
+name: "Deploy on staging env"
 
 env:
   DIR_NAME: sosk_workshop
@@ -15,8 +15,8 @@ env:
 on:
   push:
     branches:
-      - main
-      - feature/dev
+      - develop
+
   workflow_dispatch:
 
 jobs:
