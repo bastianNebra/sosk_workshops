@@ -1,0 +1,17 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: "Main Artefact for all worflow_call"
+
+on:
+  push:
+    branches:
+      - develop
+  workflow_dispatch:
+
+jobs:
+  call-reusable-workflow:
+    uses: bastianNebra/sosk_workshops/.github/workflows/phpcs-fixer-job.yml@main
+
+
+
