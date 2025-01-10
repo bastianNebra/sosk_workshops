@@ -60,7 +60,7 @@ jobs:
           ssh -T -i private_key -o StrictHostKeyChecking=no $VM_USER@$VM_IP << EOF
             mkdir -p /home/$VM_USER/$DIR_NAME
             cd /home/$VM_USER/$DIR_NAME
-            docker pull ${{ secrets.DOCKER_USERNAME }}/ $APP_NAME:v1.0.0
+            docker pull ${{ secrets.DOCKER_USERNAME }}/$APP_NAME:v1.0.0
             docker build -t $APP_NAME:v1.0.0 .
             docker run -d -p 8000:8000  $APP_NAME:v1.0.0
           EOF
