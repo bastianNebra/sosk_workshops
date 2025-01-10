@@ -62,6 +62,7 @@ jobs:
             docker pull ${{ secrets.DOCKER_USERNAME }}/ $APP_NAME:v1.0.0
             docker build -t $APP_NAME:v1.0.0 .
             docker run -d -p 8000:8000  $APP_NAME:v1.0.0
+            'echo "Deploy successful"'
           EOF
 
 
