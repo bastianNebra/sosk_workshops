@@ -5,33 +5,12 @@ on:
     push:
       branches:
           - main
-    workflow_dispatch:
-      inputs:
-        name:
-          description: "Specify the job name"
-          required: false
-          type: string
-          default: "Run Laravel Tests"
-    workflow_call:
-      inputs:
-        name:
-          description: "Specify the job name"
-          required: false
-          type: string
-          default: "Run Laravel Tests"
-        code_directory:
-          description: "Directory to check"
-          required: false
-          type: string
-        php_version:
-          description: "PHP version for the app"
-          type: string
-          default: '8.0'
+
 
 jobs:
   laravel-tests:
-    name: ${{ inputs.name }}
-    runs-on: ${{ inputs.env-run }}
+    name: test-jobs
+    runs-on: ubuntu-latest
     steps:
     - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
       with:
@@ -61,5 +40,5 @@ jobs:
     - name: Upload PHPCS Report as Artifact
       uses: actions/upload-artifact@v3
       with:
-        name: ${{ inputs.file-name }}
-        path: ${{ inputs.file-name }}.xml
+        name: test
+        path: test.xml
