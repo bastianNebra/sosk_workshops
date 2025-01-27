@@ -29,7 +29,6 @@ on:
         type: string
       php_version:
         description: "PHP version for the App"
-        required: false
         type: string
         default: '8.0'
 
