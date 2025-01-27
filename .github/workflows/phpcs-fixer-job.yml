@@ -8,7 +8,7 @@ on:
         description: "Job name"
         required: false
         type: string
-        default: "Run laravel CS test"
+        default: "Run laravel test"
       env-run:
         description: "OS System"
         required: false
