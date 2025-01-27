@@ -1,3 +1,10 @@
+
+# CodeSniffer ist ein Tool, das in der Softwareentwicklung verwendet wird, um sicherzustellen, 
+# dass der Quellcode bestimmten Codierungsstandards entspricht. Es hilft dabei, die Qualität, 
+# Konsistenz und Lesbarkeit des Codes zu wahren, indem es Verstöße gegen festgelegte Regeln 
+# oder Richtlinien erkennt.
+
+
 name: "Laravel CodeSnifer test Workflows with dynamic imput"
 
 
