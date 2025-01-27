@@ -2,26 +2,31 @@ name: "Laravel CodeSnifer test Workflows with dynamic imput"
 
 
 on:
-  push:
-    branches:
-        - main
-  workflow_call:
-    inputs:
-      name:
-        description: "Job name"
-        required: false
-        type: string
-        default: "Run laravel test"
-      env-run:
-        description: "OS System"
-        required: false
-        type: string
-        default: ubuntu-latest
-      file-name:
-        description: "Name for file resultat"
-        required: false
-        type: string
-        default: phpcs-report
+    push:
+      branches:
+          - main
+    workflow_dispatch:
+      inputs:
+        name:
+          description: "Specify the job name"
+          required: false
+          type: string
+          default: "Run Laravel Tests"
+    workflow_call:
+      inputs:
+        name:
+          description: "Specify the job name"
+          required: false
+          type: string
+          default: "Run Laravel Tests"
+        code_directory:
+          description: "Directory to check"
+          required: false
+          type: string
+        php_version:
+          description: "PHP version for the app"
+          type: string
+          default: '8.0'
 
 jobs:
   laravel-tests:
